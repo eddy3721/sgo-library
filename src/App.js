@@ -7,9 +7,25 @@ import { useState } from 'react';
 
 function App() {
   const [navBarWidth, setNavBarWidth] = useState(3.5);
+  const [appMenuDeg, setAppMenuDeg] = useState(45);
+  const [appMenuTranslate, setAppMenuTranslate] = useState(150);
+  const clickAppMenu = ()=>{
+    (appMenuDeg === 45) ? setAppMenuDeg(225): setAppMenuDeg(45);
+    (appMenuTranslate === 150) ? setAppMenuTranslate(0) : setAppMenuTranslate(150);
+  };
 
   return (
     <BrowserRouter>
+        <div className='app-menu' onClick={clickAppMenu} style={{transform:'rotate('+appMenuDeg+'deg)'}}></div>
+        <div>
+          <nav className='app-menu-child'  style={{transform:'translateX('+appMenuTranslate+'%)'}}>
+            <Link to="/"><i className='iconfont icon-home1'/></Link>
+            <Link to="/enemy"><i className='iconfont icon-iconfontgongyichongwu'/></Link>
+            <Link to="/drop"><i className='iconfont icon-material'/></Link>
+            <Link to="/skill"><i className='iconfont icon-book'/></Link>
+          </nav>
+        </div>
+
         <div className='side-menu' style={{width:navBarWidth + 'rem'}} onMouseOver={()=>setNavBarWidth(12)} onMouseOut={()=>setNavBarWidth(3.5)}>
           <nav className='header'>
             <Link to="/"><i className='iconfont icon-home1'/><span>首頁</span></Link>

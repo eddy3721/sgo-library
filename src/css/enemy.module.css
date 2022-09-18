@@ -71,3 +71,16 @@
 .pointEventNone {
     pointer-events: none;
 }
+
+@media (max-width: 768px) {
+    .enemyDetail {
+        width: 30%;
+    }
+}
+
+@media (max-width: 576px) {
+    .enemyDetail {
+        width: 100%;
+        margin: 5px 40px 20px 40px;
+    }
+}
