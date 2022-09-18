@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "name": "兔肉",
+        "type": "item",
+        "intro": "HP+10"
+    },
+    {
+        "id": 2,
+        "name": "水平斬",
+        "type": "skill",
+        "intro": "【單手劍】進行水平斬擊。"
+    },
+    {
+        "id": 3,
+        "name": "鐵礦",
+        "type": "mine",
+        "intro": "早就忘了"
+    }
+]
