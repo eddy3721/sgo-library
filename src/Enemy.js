@@ -21,8 +21,9 @@ export default function Enemy() {
 
   let [popoverPos, setPopoverPos] = useState(null);
   const showPopover = (id, event)=>{
+    let scrollTop  = document.body.scrollTop;
     setItem(PropData[id]);
-    setPopoverPos([event.target.offsetLeft, event.target.offsetTop + 30]);
+    setPopoverPos([event.target.offsetLeft, event.target.offsetTop-scrollTop + 32]);
   }
   const hidePopover = (event)=>{
     setPopoverPos(null);
@@ -59,7 +60,7 @@ export default function Enemy() {
                     enemy.drop.map(drop=>(
                       <div onMouseEnter={showPopover.bind(this,drop[0]-1)} onMouseLeave={hidePopover}>
                         <div>
-                          <i className={type[PropData[Number(drop[0])-1].type]}/><span>&nbsp;{PropData[Number(drop[0])-1].name}</span>
+                          <i className={type[PropData[Number(drop[0])-1].type] + ' ' + styles.pointEventNone}/><span className={styles.pointEventNone}>&nbsp;{PropData[Number(drop[0])-1].name}</span>
                         </div>
                       </div>
                     ))
