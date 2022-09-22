@@ -5,6 +5,7 @@ import Skill from './Skill';
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import { useState } from 'react';
 
+
 function App() {
   const [navBarWidth, setNavBarWidth] = useState(3.5);
   const [appMenuDeg, setAppMenuDeg] = useState(45);
@@ -34,7 +35,7 @@ function App() {
             <Link to="/skill"><i className='iconfont icon-book'/><span>技能</span></Link>
           </nav>
         </div>
-        
+
         <div className='main-content'>
           <Routes>
             <Route path="/" element={<Home />}/>
@@ -44,7 +45,6 @@ function App() {
             <Route path="*" element={<p>找不到頁面</p>}/>
           </Routes>
         </div>
-        
     </BrowserRouter>
   );
 }

@@ -4,13 +4,9 @@ import PropData from './json/props.json'
 import styles from './css/enemy.module.css';
 import { useState } from 'react';
 import Title from './Title';
+import EnemyDrop from './EnemyDrop';
 
 export default function Enemy() {
-  let type = {
-    "skill": "iconfont icon-book",
-    "item": "iconfont icon-material",
-    "mine": "iconfont icon-material"
-  }
   let typeCh = {
     "skill": "技能書",
     "item": "道具",
@@ -24,7 +20,9 @@ export default function Enemy() {
   const showPopover = (id, event)=>{
     let scrollTop  = document.body.scrollTop;
     setItem(PropData[id]);
-    setPopoverPos([event.target.offsetLeft, event.target.offsetTop-scrollTop + 32]);
+    (event.target.offsetTop-scrollTop < 350) ? 
+    setPopoverPos([event.target.offsetLeft, event.target.offsetTop-scrollTop + 32]):
+    setPopoverPos([event.target.offsetLeft, event.target.offsetTop-scrollTop - 150]);
   }
   const hidePopover = (event)=>{
     setPopoverPos(null);
@@ -58,13 +56,12 @@ export default function Enemy() {
                 <div className={styles.enemyDetail}>
                   <p>{enemy.name}</p>
                   <p>{'出沒層數: ' + enemy.layer[0] + '~' + enemy.layer[1]}</p>
-                  <div className={styles.drop}>
+                  <hr className="divider" />
+                  <div className={styles.drop} style={{}}>
                     {
                       enemy.drop.map(drop=>(
                         <div onMouseEnter={showPopover.bind(this,drop[0]-1)} onMouseLeave={hidePopover}>
-                          <div>
-                            <i className={type[PropData[Number(drop[0])-1].type] + ' ' + styles.pointEventNone}/><span className={styles.pointEventNone}>&nbsp;{PropData[Number(drop[0])-1].name}</span>
-                          </div>
+                          <EnemyDrop rate={drop[1] / enemy.total} drop={drop}/>
                         </div>
                       ))
                     }
@@ -76,6 +73,15 @@ export default function Enemy() {
           {
             (popoverPos) &&
               <div className={styles.popover} style={{left: popoverPos[0], top: popoverPos[1]}}>
+                <p>{item.name}</p>
+                <p>{'類型 : ' + typeCh[item.type]}</p>
+                <hr className="divider" />
+                <p>{item.intro}</p>
+              </div>
+          }
+          {
+            (popoverPos) &&
+              <div className={styles.popoverApp}>
                 <p>{item.name}</p>
                 <p>{'類型 : ' + typeCh[item.type]}</p>
                 <hr className="divider" />
