@@ -14,10 +14,18 @@ export default function Drop() {
 
   let [typeNum, setTypeNum] = useState('');
   let [openIntro, setOpenIntro] = useState(0);
+  let [searchClass, setSearchClass] = useState([]);
+
 
   const showIntro = (id)=>{
     (openIntro === id) ? setOpenIntro(0) : setOpenIntro(id);
-  }
+  };
+
+  const updateSearch = (value)=>{
+    (value) ?
+    setSearchClass(PropData.filter(prop=>prop.name.indexOf(value) !== -1)):
+    setSearchClass([]);
+  };
 
   return (
       <div>
@@ -34,7 +42,26 @@ export default function Drop() {
           <hr className="divider" />
           <div>
             {
-              (typeNum) &&
+              (searchClass.length !== 0) &&
+              searchClass.map(item=>(
+                <div key={item.id} className={styles.item} onClick={showIntro.bind(this,item.id)}>
+                  {
+                    (openIntro === item.id) ?
+                    <span>&nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp;</span>:
+                    <span>&nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp;</span>
+                  }
+                  <span>{item.name}</span>
+                  <div>
+                    {
+                      (openIntro === item.id) &&
+                      <div>{item.intro}</div>
+                    }
+                  </div>
+                </div>
+              ))
+            }
+            {
+              (typeNum && searchClass.length===0) &&
               propClass[typeNum].map(item=>(
                 <div key={item.id} className={styles.item} onClick={showIntro.bind(this,item.id)}>
                   {
@@ -53,6 +80,10 @@ export default function Drop() {
               ))
             }
           </div>
+        </div>
+
+        <div className={styles.search}>
+          <input className={styles.searchBox} placeholder="搜尋.w.b" onChange={(e)=>updateSearch(e.target.value)} />
         </div>
       </div>
   )
