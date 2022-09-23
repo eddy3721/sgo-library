@@ -1,0 +1,43 @@
+.item {
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 0px;
+    cursor: pointer;
+    transition: all 0.3s ease-out 0s;
+}
+
+.item+.item {
+    border-top: 1px solid rgb(144, 180, 247, 0.5);
+}
+
+.item:hover {
+    background-color: #2f4763;
+}
+
+.item>div>div {
+    font-size: 16px;
+    margin-top: 10px;
+    padding-left: 42px;
+}
+
+.enemyMapButton {
+    border: 3px solid #fff;
+    border-radius: 20px;
+    background: #1a202c;
+    color: #fff;
+    margin: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease-out 0s;
+    min-width: 84px;
+}
+
+.enemyMapButton:hover {
+    background: #2f4763;
+}
+
+.enemyMapButton:focus {
+    background: #2f4763;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}

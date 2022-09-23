@@ -12,13 +12,13 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 3px solid rgba(255, 255, 255, 0.3);
     display: flex;
     flex-direction: column;
     padding: 30px 0;
     box-sizing: border-box;
     background-color: #1a202c;
-    transition: .3s;
+    transition: .4s;
     overflow-x: hidden;
     white-space: nowrap;
 }
@@ -120,9 +120,11 @@ hr.divider {
         background-color: #1a202c;
         top: 0;
         width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0px 1.8px 10px rgba(0, 0, 0, 0.131), 0px 14px 80px rgba(0, 0, 0, 0.2);
     }
     .main {
-        margin-top: 86px;
+        margin-top: 100px;
     }
 }
 
