@@ -1,5 +1,121 @@
+:root {
+    --circleMenu1_1: 150px;
+    --circleMenu1_2: -150px;
+    --circleMenu1_3: 106.06px;
+    --circleMenu1_4: -106.06px;
+    --circleMenu2_1: 120px;
+    --circleMenu2_2: -120px;
+    --circleMenu2_3: 84.85px;
+    --circleMenu2_4: -84.85px;
+}
+
 .homeNav a {
     margin: 10px;
     color: #fff;
     text-decoration: none;
+}
+
+.circleButton {
+    border: 10px solid #1a202c;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 18px;
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px #fff;
+    text-decoration: none;
+    transition: all 0.15s ease-out 0s;
+}
+
+.circleButton:hover {
+    border: 10px solid #1a202c;
+    background-color: #eaa500;
+    box-shadow: 0 0 0 3px #eaa500;
+}
+
+.circleButton a {
+    position: relative;
+    top: 30%;
+    text-decoration: none;
+    color: #1a202c;
+    font-weight: bolder;
+}
+
+.circleMenu {
+    margin-top: 200px;
+    margin-right: 90px;
+    display: flex;
+}
+
+.circleMenu>div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.circleMenu>div :nth-child(1) {
+    transform: translate(0px, var(--circleMenu1_2));
+}
+
+.circleMenu>div :nth-child(2) {
+    transform: translate(var(--circleMenu1_4), var(--circleMenu1_4));
+}
+
+.circleMenu>div :nth-child(3) {
+    transform: translate(var(--circleMenu1_2), 0px);
+}
+
+.circleMenu>div :nth-child(4) {
+    transform: translate(var(--circleMenu1_4), var(--circleMenu1_3));
+}
+
+.circleMenu>div :nth-child(5) {
+    transform: translate(0px, var(--circleMenu1_1));
+}
+
+.circleMenu>div :nth-child(6) {
+    transform: translate(var(--circleMenu1_3), var(--circleMenu1_3));
+}
+
+.circleMenu>div :nth-child(7) {
+    transform: translate(var(--circleMenu1_1), 0px);
+}
+
+.circleMenu>div :nth-child(8) {
+    transform: translate(var(--circleMenu1_3), var(--circleMenu1_4));
+}
+
+@media (max-width: 768px) {
+    .circleMenu {
+        margin-right: 70px;
+    }
+    .circleButton {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+    }
+    .circleMenu>div :nth-child(1) {
+        transform: translate(0px, var(--circleMenu2_2));
+    }
+    .circleMenu>div :nth-child(2) {
+        transform: translate(var(--circleMenu2_4), var(--circleMenu2_4));
+    }
+    .circleMenu>div :nth-child(3) {
+        transform: translate(var(--circleMenu2_2), 0px);
+    }
+    .circleMenu>div :nth-child(4) {
+        transform: translate(var(--circleMenu2_4), var(--circleMenu2_3));
+    }
+    .circleMenu>div :nth-child(5) {
+        transform: translate(0px, var(--circleMenu2_1));
+    }
+    .circleMenu>div :nth-child(6) {
+        transform: translate(var(--circleMenu2_3), var(--circleMenu2_3));
+    }
+    .circleMenu>div :nth-child(7) {
+        transform: translate(var(--circleMenu2_1), 0px);
+    }
+    .circleMenu>div :nth-child(8) {
+        transform: translate(var(--circleMenu2_3), var(--circleMenu2_4));
+    }
 }
