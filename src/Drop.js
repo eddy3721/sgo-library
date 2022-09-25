@@ -1,5 +1,6 @@
 import React from 'react'
 import PropData from './json/props.json'
+import EnemyData from './json/enemy.json'
 import styles from './css/drop.module.css';
 import { useState } from 'react';
 import Title from './Title';
@@ -15,10 +16,22 @@ export default function Drop() {
   let [typeNum, setTypeNum] = useState('');
   let [openIntro, setOpenIntro] = useState(0);
   let [searchClass, setSearchClass] = useState([]);
+  let [dropEnemy, setDropEnemy] = useState([]);
 
 
   const showIntro = (id)=>{
     (openIntro === id) ? setOpenIntro(0) : setOpenIntro(id);
+    let arr = [];
+    EnemyData.forEach(map=>{
+      map.enemy.forEach(enemy=>{
+        for(let i = 0; i < enemy.drop.length; i++){
+          if(enemy.drop[i][0] === id){
+            arr.push([enemy.name, map.name]);
+          }
+        }
+      });
+    });
+    setDropEnemy(arr);
   };
 
   const updateSearch = (value)=>{
@@ -54,7 +67,17 @@ export default function Drop() {
                   <div>
                     {
                       (openIntro === item.id) &&
-                      <div>{item.intro}</div>
+                      <div>
+                        <div>{item.intro}</div>
+                        <hr className="divider" />
+                        <div className={styles.dropPlace}>
+                          {
+                            dropEnemy.map(info=>(
+                              <div className={styles.dropPlace}>{info[0] + '(' + info[1] + ')'}</div>
+                            ))
+                          }
+                        </div>
+                      </div>   
                     }
                   </div>
                 </div>
@@ -73,7 +96,17 @@ export default function Drop() {
                   <div>
                     {
                       (openIntro === item.id) &&
-                      <div>{item.intro}</div>
+                      <div>
+                        <div>{item.intro}</div>
+                        <hr className="divider" />
+                        <div className={styles.dropPlace}>
+                          {
+                            dropEnemy.map(info=>(
+                              <div className={styles.dropPlace}>{info[0] + '(' + info[1] + ')'}</div>
+                            ))
+                          }
+                        </div>
+                      </div>   
                     }
                   </div>
                 </div>

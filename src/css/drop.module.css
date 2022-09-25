@@ -65,6 +65,15 @@
     outline-width: 0;
 }
 
+.dropPlace {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dropPlace>div {
+    margin: 10px;
+}
+
 @media (max-width: 768px) {
     .search {
         left: 25px;
