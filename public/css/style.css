@@ -1,7 +1,16 @@
+:root {
+    --orange1: #ffba19;
+    --orange2: #eaa500;
+    --orange3: #da9800;
+    --blue1: #a5e5da;
+    --blue2: #97dace;
+    --blue2: #89cec1;
+}
+
 html,
 body {
     background-color: #1a202c;
-    color: white;
+    color: #fff;
     height: 100%;
     overflow-y: auto;
     font-family: 'Noto Sans TC', '微軟正黑體', sans-serif!important;
