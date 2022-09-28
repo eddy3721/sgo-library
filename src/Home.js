@@ -8,7 +8,7 @@ export default function ProductList() {
         {'name':'怪物','url':'/enemy'},
         {'name':'素材','url':'/drop'},
         {'name':'技能','url':'/skill'},
-        {'name':'未開放','url':'/none'},
+        {'name':'測名','url':'/forge'},
         {'name':'未開放','url':'/none'},
         {'name':'未開放','url':'/none'},
         {'name':'未開放','url':'/none'},
