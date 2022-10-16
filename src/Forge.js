@@ -98,25 +98,6 @@ export default function Forge() {
     setDur(newObj.dur);
   }
 
-  //新建存檔
-    useEffect(() => {
-        let data = JSON.parse(localStorage.getItem('forge_sheet'));
-        console.log(data);
-
-        if(data === null){
-            data = [];
-            for(let i = 1; i <= 4; i++){
-                let obj = {
-                    'name': '存檔' + i, 
-                    'data': []
-                }
-                data.push(obj);
-            }
-
-            localStorage.setItem('forge_sheet', JSON.stringify(data));
-        }
-    }, [])
-
   return (
     <div>
         <Title mainTitle="測名"/>
