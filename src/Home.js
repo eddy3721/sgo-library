@@ -1,7 +1,7 @@
 import styles from './css/home.module.css';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {useEffect } from 'react';
 
 export default function ProductList() {
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './css/forge.module.css';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import Title from './Title';
 import Dialog from './forge/Forge_Dialog';
 import {Alert, TextField, MenuItem, ButtonGroup, Button} from '@mui/material';
