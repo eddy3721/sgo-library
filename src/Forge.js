@@ -130,7 +130,7 @@ export default function Forge() {
 
         //更新表單
         let newObj = obj;
-        newObj.name = arr[2].substr(4);
+        newObj.name = arr[1];
         newObj.type = arr[16].substr(3);
         newObj.atk = resault[0];
         newObj.def = resault[1];
