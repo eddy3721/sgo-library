@@ -56,7 +56,6 @@ export default function Forge_Sheet(props) {
           <TableRow>
             <TableCell>裝備名稱</TableCell>
             <TableCell align="right">類型</TableCell>
-            <TableCell align="right">礦石</TableCell>
             <TableCell align="right">攻擊</TableCell>
             <TableCell align="right">防禦</TableCell>
             <TableCell align="right">幸運</TableCell>
@@ -75,7 +74,6 @@ export default function Forge_Sheet(props) {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.type}</TableCell>
-              <TableCell align="right">{row.mine}</TableCell>
               <TableCell align="right">{row.atk}</TableCell>
               <TableCell align="right">{row.def}</TableCell>
               <TableCell align="right">{row.luk}</TableCell>

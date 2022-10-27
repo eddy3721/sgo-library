@@ -22,9 +22,9 @@ export default function Enemy() {
     return arr;
   }
   let [mapNameArr] = useState(pushMapname());
-  let [mapNum, setMapNum] = useState(-1);
+  let [mapNum, setMapNum] = useState(0);
   let [item, setItem] = useState({});
-  let [value, setValue] = useState(''); //選地圖
+  let [value, setValue] = useState('大草原'); //選地圖
 
   //popover
   let [popoverPos, setPopoverPos] = useState(null);
