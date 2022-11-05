@@ -9,6 +9,17 @@ export default function About() {
                 "鳳梨酥", "便當", "肉圓", "聖黃金蛋炒飯", "肉粽", "紅豆餅", "炸粿",
                 "鍋貼", "鐵板麵", "泡麵", "火雞肉飯"];
   let [ramdomFood] = useState(food[Math.floor(Math.random()*food.length)]);
+
+  async function test(){
+    const url = '/covid_19/api';
+    try {
+      const res = await fetch(url);
+      const data = await res.text();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   return (
     <div>
@@ -43,7 +54,9 @@ export default function About() {
             <div className={styles.skillDetail}>
                 <p>資料提供</p>
                 <hr className="divider" />
+                <p>養雞場</p>
             </div>
+            <button onClick={test}>test</button>
           </div>
         </div>
       </div>

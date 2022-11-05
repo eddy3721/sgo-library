@@ -3,7 +3,7 @@ import styles from './css/forge.module.css';
 import { useState} from 'react';
 import Title from './Title';
 import Dialog from './forge/Forge_Dialog';
-import {Alert, TextField, ButtonGroup, Button} from '@mui/material';
+import {Alert, TextField, Button} from '@mui/material';
 
 const sx = {
     "&":{
@@ -76,7 +76,7 @@ export default function Forge() {
     '傳說的': 2.60,
     '神話的': 2.25,
     '史詩的': 1.9,
-    '完美的': 1.70,
+    '完美的': 1.80,
     '頂級的': 1.70,
     '精良的': 1.45,
     '高級的': 1.25,
@@ -121,7 +121,7 @@ export default function Forge() {
         resault.push(Math.round((arr[6] / r) * 100) / 100);
         resault.push(Math.round((arr[7] / r) * 100) / 100);
         resault.push(Math.round((arr[8] / r) * 100) / 100);
-        resault.push(Math.round((arr[9] / r) * 100) / 100);
+        resault.push(arr[9]);
         resault.push(Math.round((arr[12] / r) * 100) / 100);
         setAtk2(resault[0]);
         setDef2(resault[1]);
@@ -147,6 +147,11 @@ export default function Forge() {
 
   }
 
+  //清除輸入框
+  const clearPasteValue = ()=>{
+    document.querySelector('#paste').value='';
+  };
+
   return (
     <div>
         <Title mainTitle="測名"/>
@@ -160,11 +165,12 @@ export default function Forge() {
         
         <div className={styles.forgeBlock}>
             <TextField
-            id="eq_4"
+            id="paste"
             label="貼上背包數值"
             sx={sx}
             onChange={newValue => pasteEq(newValue.target.value)}
             />
+            <Button sx={{marginTop: 2}} variant="contained" onClick={clearPasteValue}>清除</Button>
         </div>
 
         <div className={styles.forgeBlock}>
@@ -268,10 +274,7 @@ export default function Forge() {
         </div>
 
         <div className={styles.forgeBlock}>
-            <ButtonGroup size="large" color="info" variant="outlined" aria-label="outlined button group">
-                <Dialog obj={obj}/>
-                <Button>複製結果</Button>
-            </ButtonGroup>
+            <Dialog obj={obj}/>
         </div>
 
         </div>
