@@ -44,7 +44,7 @@ export default function Drop() {
       <div>
         <Title mainTitle="素材"/>
         
-        <div className='main'>
+        <div className='main' style={{marginBottom: '10rem'}}>
           <div>
             {
               type.map(type=>(
