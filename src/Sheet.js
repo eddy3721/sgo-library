@@ -73,7 +73,10 @@ export default function Sheet() {
     const deleteFile = (file, index)=>{
       let r = window.confirm('確定要清空存檔 「' + file.name + ' 」嗎?');
       if(r === true){
-        
+        allData[index].data = [];
+        localStorage.setItem('forge_sheet', JSON.stringify(allData));
+        setAllData(allData);
+        document.querySelector('#table tbody').innerHTML = "";
       }
     };
   
@@ -103,8 +106,6 @@ export default function Sheet() {
                         <TabPanel value={value} index={index}>
                           
                             <div className={styles.buttonBox}>
-                                <Button variant="contained">匯出excel</Button>
-                                <Button variant="contained">匯入excel</Button>
                                 <Button onClick={()=>editFileName(file, index)} variant="contained" startIcon={<EditIcon />}>更改存檔名稱</Button>
                                 <Button onClick={()=>deleteFile(file, index)} variant="contained" startIcon={<DeleteIcon />}>清空該存檔</Button>
                             </div>

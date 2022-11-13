@@ -25,7 +25,7 @@ export default function Drop() {
     EnemyData.forEach(map=>{
       map.enemy.forEach(enemy=>{
         for(let i = 0; i < enemy.drop.length; i++){
-          if(enemy.drop[i][0] === id){
+          if(enemy.drop[i] === id){
             arr.push([enemy.name, map.name]);
           }
         }
