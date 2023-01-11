@@ -55,8 +55,10 @@ export default function Sheet() {
     };
 
     //更新allData
-    const freshAllData = ()=>{
+    const freshAllData = (file, index)=>{
       setAllData(JSON.parse(localStorage.getItem('forge_sheet')));
+      file = normalMode(file, index);
+      setMode(0);
     };
 
     //編輯存檔名稱
@@ -140,7 +142,7 @@ export default function Sheet() {
                 >
                     {
                         allData.map((file, index)=>(
-                            <Tab onClick={()=>freshAllData()} key={index} label={file.name} {...a11yProps(index)} />
+                            <Tab onClick={()=>freshAllData(file, index)} key={index} label={file.name} {...a11yProps(index)} />
                         ))
                     }
                 </Tabs>
