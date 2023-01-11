@@ -3,7 +3,7 @@ import styles from './css/forge.module.css';
 import { useState} from 'react';
 import Title from './Title';
 import Dialog from './forge/Forge_Dialog';
-import {Alert, TextField, ButtonGroup, Button} from '@mui/material';
+import {Alert, TextField, Button} from '@mui/material';
 
 const sx = {
     "&":{
@@ -73,14 +73,14 @@ export default function Forge() {
   });
 
   let rate = {
-    '傳說的': 2.60,
-    '神話的': 2.25,
-    '史詩的': 1.9,
-    '完美的': 1.70,
+    '傳說的': 2.30,
+    '神話的': 2.1,
+    '史詩的': 2,
+    '完美的': 1.80,
     '頂級的': 1.70,
-    '精良的': 1.45,
-    '高級的': 1.25,
-    '上等的': 1.15,
+    '精良的': 1.50,
+    '高級的': 1.3,
+    '上等的': 1.2,
     '普通的': 1.00,
     '次等的': 0.9,
     '劣質的': 0.8,
@@ -102,27 +102,29 @@ export default function Forge() {
   
   //貼上數值
   function pasteEq(value){
-    let arr = value.split(/\s+/);
-    console.log(arr);
-    for(let i = 5; i <= 9; i++){
-        arr[i] = Number(arr[i].substr(3));
-    }
-    console.log(arr);
-    setAtk(arr[6]);
-    setDef(arr[7]);
-    setLuk(arr[8]);
-    setWt(arr[9]);
-    setDur(arr[12]);
+    let resault = [];
+    resault.push(Number(/攻擊：([0-9]+)/.exec(value)[1]),
+                Number(/防禦：([0-9]+)/.exec(value)[1]),
+                Number(/幸運：([0-9]+)/.exec(value)[1]),
+                Number(/重量：([0-9]+)/.exec(value)[1]),
+                Number(/耐久：([0-9]+)/.exec(value)[1]));
+
+    setAtk(resault[0]);
+    setDef(resault[1]);
+    setLuk(resault[2]);
+    setWt(resault[3]);
+    setDur(resault[4]);
 
     //計算結果
-    let r = rate[arr[0]];
+    let rateName = value.split(" ")[0];
+    let r = rate[rateName];
     if(r){
-        let resault = [];
-        resault.push(Math.round((arr[6] / r) * 100) / 100);
-        resault.push(Math.round((arr[7] / r) * 100) / 100);
-        resault.push(Math.round((arr[8] / r) * 100) / 100);
-        resault.push(Math.round((arr[9] / r) * 100) / 100);
-        resault.push(Math.round((arr[12] / r) * 100) / 100);
+        for(let i = 0; i < resault.length; i++){
+            if(i !== 3){ //重量除外
+                resault[i] = Math.round((resault[i] / r) * 100) / 100;
+            }
+        }
+
         setAtk2(resault[0]);
         setDef2(resault[1]);
         setLuk2(resault[2]);
@@ -131,21 +133,25 @@ export default function Forge() {
 
         //更新表單
         let newObj = obj;
-        newObj.name = arr[1];
-        newObj.type = arr[16].substr(3);
+        newObj.name = value.slice(rateName.length+1, /鍛造者：/.exec(value).index-1);
+        newObj.type = /類型：(\S+)/.exec(value)[1];
         newObj.atk = resault[0];
         newObj.def = resault[1];
         newObj.luk = resault[2];
         newObj.wt = resault[3];
         newObj.dur = resault[4];
         setObj(newObj);
-        console.log(obj);
     }
     else{
         alert("error, 該品質不在記錄內");
     }
 
   }
+
+  //清除輸入框
+  const clearPasteValue = ()=>{
+    document.querySelector('#paste').value='';
+  };
 
   return (
     <div>
@@ -160,11 +166,12 @@ export default function Forge() {
         
         <div className={styles.forgeBlock}>
             <TextField
-            id="eq_4"
+            id="paste"
             label="貼上背包數值"
             sx={sx}
             onChange={newValue => pasteEq(newValue.target.value)}
             />
+            <Button sx={{marginTop: 2}} variant="contained" onClick={clearPasteValue}>清除</Button>
         </div>
 
         <div className={styles.forgeBlock}>
@@ -268,10 +275,7 @@ export default function Forge() {
         </div>
 
         <div className={styles.forgeBlock}>
-            <ButtonGroup size="large" color="info" variant="outlined" aria-label="outlined button group">
-                <Dialog obj={obj}/>
-                <Button>複製結果</Button>
-            </ButtonGroup>
+            <Dialog obj={obj}/>
         </div>
 
         </div>
