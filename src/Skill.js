@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Title from './Title';
 
 export default function Skill() {
-  let type = ["單手劍", "細劍", "短刀", "單手錘", "盾牌", "雙手劍", "太刀", "雙手斧", "長槍"];
+  let type = ["單手劍", "細劍", "短刀", "單手錘", "盾牌", "雙手劍", "太刀", "雙手斧", "長槍", "通用", "徒手"];
   let [weaponType, setWeaponType] = useState('');
 
   let skillData = PropData.filter(prop=>prop.type === 'skill');

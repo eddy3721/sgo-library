@@ -49,7 +49,7 @@
 .drop>div>div {
     border: none;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 7px;
     color: #ffffff;
     user-select: none;
     background-color: #1a202c;
@@ -85,6 +85,7 @@
 }
 
 .skillDetail {
+    min-width: 520px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     margin: 5px 20px 20px 20px;
@@ -119,5 +120,8 @@
     .enemyDetail {
         width: 100%;
         margin: 5px 40px 20px 40px;
+    }
+    .skillDetail {
+        min-width: 220px;
     }
 }
