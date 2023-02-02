@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './css/enemy.module.css';
-import PropData from './json/props.json'
 
 export default function EnemyDrop(props) {
   let type = {

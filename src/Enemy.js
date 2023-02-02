@@ -1,6 +1,4 @@
 import React from 'react'
-import EnemyData from './json/enemy.json'
-import PropData from './json/props.json'
 import styles from './css/enemy.module.css';
 import { useState, useEffect } from 'react';
 import Title from './Title';
