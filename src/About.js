@@ -44,6 +44,11 @@ export default function About() {
                 <p>資料提供</p>
                 <hr className="divider" />
                 <p>養雞場</p>
+                <hr className="divider" />
+                <img src={Avatar} alt="" />
+                <p>RccZzz</p>
+                <div>大木神招募來的菜雞RC，隨時都在也似乎不在，很菜的一隻雞</div>
+                <hr className="divider" />
             </div>
           </div>
         </div>
