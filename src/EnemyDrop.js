@@ -6,20 +6,21 @@ export default function EnemyDrop(props) {
   let type = {
     "skill": "iconfont icon-book",
     "item": "iconfont icon-material",
-    "mine": "iconfont icon-material"
+    "mine": "iconfont icon-material",
+    "none": ""
   }
-  let bc = '';
 
-  if(props.rate >= 0.7) bc = '3d6c3d';
-  else if(props.rate >= 0.5) bc = '4387ad';
-  else if(props.rate >= 0.3) bc = '7e5d89';
-  else bc = 'caa853';
-
-  let drop = props.drop;
-
-  return (
-    <div style={{border: '3px solid #' + bc}}>
-        <i className={type[PropData[Number(drop[0])-1].type] + ' ' + styles.pointEventNone}/><span className={styles.pointEventNone}>&nbsp;{PropData[Number(drop[0])-1].name}</span>
-    </div>
+  let drop;
+  if(props.drop){
+    drop = props.drop;
+  }
+  else{
+    drop = {'type': 'none', 'name': '暫無', 'id': '1'};
+  }
+  
+  return (  
+      <div style={{backgroundColor: 'rgba(255, 255, 255, .15)', fontSize: '14px'}}>
+        <i className={type[drop.type] + ' ' + styles.pointEventNone}/><span className={styles.pointEventNone}>&nbsp;{drop.name}</span>
+      </div>
   )
 }

@@ -43,6 +43,7 @@ export default function About() {
             <div className={styles.skillDetail}>
                 <p>資料提供</p>
                 <hr className="divider" />
+                <p>養雞場</p>
             </div>
           </div>
         </div>

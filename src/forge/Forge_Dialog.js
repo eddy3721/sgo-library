@@ -119,6 +119,7 @@ export default function ConfirmationDialog(props) {
           aria-haspopup="true"
           aria-controls="ringtone-menu"
           aria-label="phone ringtone"
+          variant="contained"
           onClick={handleClickListItem}
         >
           存入...

@@ -27,8 +27,8 @@ function App() {
             <Link to="/enemy"><i className='iconfont icon-iconfontgongyichongwu'/></Link>
             <Link to="/drop"><i className='iconfont icon-material'/></Link>
             <Link to="/skill"><i className='iconfont icon-book'/></Link>
-            <Link to="/forge"><i className='iconfont icon-about'/></Link>
-            <Link to="/sheet"><i className='iconfont icon-about'/></Link>
+            <Link to="/forge"><i className='iconfont icon-HammerOutline'/></Link>
+            <Link to="/sheet"><i className='iconfont icon-list'/></Link>
 
             <Link to="/about"><i className='iconfont icon-about'/></Link>
           </nav>
@@ -40,8 +40,8 @@ function App() {
             <Link to="/enemy"><i className='iconfont icon-iconfontgongyichongwu'/><span>怪物</span></Link>
             <Link to="/drop"><i className='iconfont icon-material'/><span>素材</span></Link>
             <Link to="/skill"><i className='iconfont icon-book'/><span>技能</span></Link>
-            <Link to="/forge"><i className='iconfont icon-about'/><span>測名</span></Link>
-            <Link to="/sheet"><i className='iconfont icon-about'/><span>測名表</span></Link>
+            <Link to="/forge"><i className='iconfont icon-HammerOutline'/><span>測名</span></Link>
+            <Link to="/sheet"><i className='iconfont icon-list'/><span>測名表</span></Link>
 
             <Link to="/about"><i className='iconfont icon-about'/><span>關於</span></Link>
           </nav>
