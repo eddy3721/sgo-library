@@ -1,5 +1,5 @@
-import React from 'react'
-import PropData from './json/props.json'
+import React from 'react';
+import cofigJson from './json/config.json';
 import styles from './css/drop.module.css';
 import { useState , useEffect} from 'react';
 import Title from './Title';
@@ -9,11 +9,6 @@ import $ from 'jquery';
 
 export default function Drop() {
   let type = [["item", "道具"],["mine", "礦物"]];
-  let propClass = {};
-
-  type.forEach(type=>{
-    propClass[type[0]] = PropData.filter(prop=>prop.type === type[0]);
-  });
 
   let [typeNum, setTypeNum] = useState('');
   let [openIntro, setOpenIntro] = useState(0);
@@ -23,13 +18,13 @@ export default function Drop() {
 
   useEffect(() => {
     let a = {
-      sheetUrl: "https://docs.google.com/spreadsheets/d/1NgVMebLyJ7Mstm-N_DjGNno388w0Ncm0OfA8RwCj6jg/edit#gid=1862839471",
+      sheetUrl: cofigJson.sheetUrl,
       page: "drop"
     };
     // declare the async data fetching function
     const fetchData = async () => {
       let dropData;
-      await $.get('https://script.google.com/macros/s/AKfycbyB__dTvxQjtUVkmhX5frOiqc6EITwt_Vv3OwjF7gdwYpb_R18zbpdpeAx6Bfs0pEgc/exec',a, function(data){
+      await $.get(cofigJson.appScriptUrl,a, function(data){
         dropData = JSON.parse(data);
       });
       dropData.item = dropData.itemAndMineData.filter(e=>e.type === 'item');
@@ -62,7 +57,7 @@ export default function Drop() {
 
   const updateSearch = (value)=>{
     (value) ?
-    setSearchClass(PropData.filter(prop=>prop.name.indexOf(value) !== -1)):
+    setSearchClass(dropData.itemAndMineData.filter(prop=>prop.name.indexOf(value) !== -1)):
     setSearchClass([]);
   };
 

@@ -2,35 +2,63 @@ import React from 'react'
 import EnemyData from './json/enemy.json'
 import PropData from './json/props.json'
 import styles from './css/enemy.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Title from './Title';
 import ComboBox from './ComboBox';
 import EnemyDrop from './EnemyDrop';
 import {Alert, Autocomplete} from '@mui/material';
+import $ from 'jquery';
+import cofigJson from './json/config.json';
 
 export default function Enemy() {
+  let [mapNameArr, setMapNameArr] = useState();
+  let [mapNum, setMapNum] = useState(0);
+  let [item, setItem] = useState({});
+  let [value, setValue] = useState('大草原'); //選地圖
+  let [enemyData, setEnemyData] = useState();
+
+  useEffect(() => {
+    let a = {
+      sheetUrl: cofigJson.sheetUrl,
+      page: "drop"
+    };
+    // declare the async data fetching function
+    const fetchData = async () => {
+      let dropData;
+      await $.get(cofigJson.appScriptUrl,a, function(data){
+        dropData = JSON.parse(data);
+      });
+      Object.keys(dropData.enemyData).forEach(mapName=>{
+        dropData.enemyData[mapName].forEach(enemy=>{
+          enemy.drop.forEach((itemId, index)=>{
+            enemy.drop[index] = dropData.itemAndMineData.find(item=>item.id === itemId);
+          });
+        });
+      });
+      delete dropData.enemyData[""];
+      console.log(dropData);
+      setEnemyData(dropData);
+      setMapNameArr(Object.keys(dropData.enemyData));
+    }
+  
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);;
+  }, [])
+
   let typeCh = {
     "skill": "技能書",
     "item": "道具",
     "mine": "礦物"
   }
-  function pushMapname(){
-    let arr = [];
-    EnemyData.forEach(map=>{
-      arr.push(map.name);
-    })
-    return arr;
-  }
-  let [mapNameArr] = useState(pushMapname());
-  let [mapNum, setMapNum] = useState(0);
-  let [item, setItem] = useState({});
-  let [value, setValue] = useState('大草原'); //選地圖
+
 
   //popover
   let [popoverPos, setPopoverPos] = useState(null);
   const showPopover = (id, event)=>{
     let scrollTop  = document.body.scrollTop;
-    setItem(PropData[id]);
+    setItem(enemyData.itemAndMineData.find(item=>item.id === id));
     (event.target.offsetTop-scrollTop < 350) ? 
     setPopoverPos([event.target.offsetLeft, event.target.offsetTop-scrollTop + 32]):
     setPopoverPos([event.target.offsetLeft, event.target.offsetTop-scrollTop - 150]);
@@ -43,7 +71,9 @@ export default function Enemy() {
       <div>
         <Title mainTitle="怪物"/>
         
-        <div className='main'>
+        {
+          (enemyData)?
+          <div className='main'>
           
           <div>
             <Autocomplete
@@ -70,22 +100,22 @@ export default function Enemy() {
             {
               (mapNum === -1) ? 
               <Alert variant="outlined" severity="warning" color='info' sx={{color:'#03a9f4'}}>請選擇地圖</Alert>:
-              <div>{'-' + EnemyData[mapNum].name + '-'}</div>
+              <div>{'-' + value + '-'}</div>
             }
           </div>
           
           <div className={styles.enemyList}>
             {
               (mapNum !== -1) &&
-              EnemyData[mapNum].enemy.map(enemy=>(
+              enemyData.enemyData[value].map(enemy=>(
                 <div className={styles.enemyDetail}>
                   <p>{enemy.name}</p>
-                  <p>{'出沒層數: ' + enemy.layer[0] + '~' + enemy.layer[1]}</p>
+                  <p>{'出沒層數: ' + enemy.layer}</p>
                   <hr className="divider" />
                   <div className={styles.drop} style={{}}>
                     {
                       enemy.drop.map(drop=>(
-                        <div onMouseEnter={showPopover.bind(this,drop-1)} onMouseLeave={hidePopover}>
+                        <div onMouseEnter={showPopover.bind(this,drop.id)} onMouseLeave={hidePopover}>
                           <EnemyDrop rate={1} drop={drop}/>
                         </div>
                       ))
@@ -114,6 +144,12 @@ export default function Enemy() {
               </div>
           }
         </div>
+        :
+        <div className='main' style={{marginBottom: '10rem'}}>
+          <div>加載中</div>
+        </div>
+        }
+        
       </div>
   )
 }
