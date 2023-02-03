@@ -49,6 +49,10 @@ export default function About() {
                 <p>RccZzz</p>
                 <div>大木神招募來的菜雞RC，隨時都在也似乎不在，很菜的一隻雞</div>
                 <hr className="divider" />
+                <img src={require("./image/shy.png")} width="100" alt='/'/>
+                <p>Cerio</p>
+                <div>「這隻雜燴兔生到會被公車撞。」</div>
+                <hr className="divider" />
             </div>
           </div>
         </div>
