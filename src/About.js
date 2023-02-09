@@ -53,6 +53,10 @@ export default function About() {
                 <p>Cerio</p>
                 <div>「這隻雜燴兔生到會被公車撞。」</div>
                 <hr className="divider" />
+                <img src={require("./image/dola.gif")} width="100" alt='/'/>
+                <p>好騙多拉</p>
+                <div>「男人的浪漫是太刀，所以我選擇玩短刀。」</div>
+                <hr className="divider" />
             </div>
           </div>
         </div>
